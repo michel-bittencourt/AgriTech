@@ -1,4 +1,4 @@
-﻿using AgriTech.Models;
+﻿using AgriTech.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

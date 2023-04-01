@@ -1,4 +1,4 @@
-namespace AgriTech.Models
+namespace AgriTech.Models.ViewModel
 {
     public class ErrorViewModel
     {
