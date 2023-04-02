@@ -5,22 +5,11 @@
 namespace AgriTech.Migrations
 {
     /// <inheritdoc />
-    public partial class AlterandoDadosAdubo : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Ingredientes",
-                table: "Adubo",
-                newName: "Tipo");
-
-            migrationBuilder.AddColumn<int>(
-                name: "PlantaId",
-                table: "Adubo",
-                type: "int",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "Planta",
                 columns: table => new
@@ -43,41 +32,42 @@ namespace AgriTech.Migrations
                     table.PrimaryKey("PK_Planta", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Adubo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DescricaoMontagem = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Observacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlantaId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adubo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Adubo_Planta_PlantaId",
+                        column: x => x.PlantaId,
+                        principalTable: "Planta",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Adubo_PlantaId",
                 table: "Adubo",
                 column: "PlantaId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Adubo_Planta_PlantaId",
-                table: "Adubo",
-                column: "PlantaId",
-                principalTable: "Planta",
-                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Adubo_Planta_PlantaId",
-                table: "Adubo");
+            migrationBuilder.DropTable(
+                name: "Adubo");
 
             migrationBuilder.DropTable(
                 name: "Planta");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Adubo_PlantaId",
-                table: "Adubo");
-
-            migrationBuilder.DropColumn(
-                name: "PlantaId",
-                table: "Adubo");
-
-            migrationBuilder.RenameColumn(
-                name: "Tipo",
-                table: "Adubo",
-                newName: "Ingredientes");
         }
     }
 }
