@@ -10,6 +10,7 @@ builder.Services.AddDbContext<AgriTechContext>(options =>
 // Add services to the container.
 builder.Services.AddScoped<SeedingService>();
 builder.Services.AddScoped<AduboService>();
+builder.Services.AddScoped<PlantaService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

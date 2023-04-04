@@ -1,0 +1,80 @@
+﻿@model AgriTech.Models.Planta
+
+@{
+    ViewData["Title"] = "Plantas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <form asp-action="Create" class="form-inline">
+            <div class="form-group d-flex justify-content-between">
+                <div class="col-md-4">
+                    <label asp-for="NomeCientifico" class="control-label">Nome Científico</label>
+                    <input asp-for="NomeCientifico" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="NomePopular" class="control-label">Nome Popular</label>
+                    <input asp-for="NomePopular" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="EstacaoCrescimento" class="control-label">Melhor Estação</label>
+                    <input asp-for="EstacaoCrescimento" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group d-flex justify-content-between mt-3">
+                <div class="col-md-2">
+                    <label asp-for="ComprimentoPlantio" class="control-label">Compri. para Plantio</label>
+                    <input asp-for="ComprimentoPlantio" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="LarguraPlantio" class="control-label">Larg. para Plantio</label>
+                    <input asp-for="LarguraPlantio" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="ProfundidadePlantio" class="control-label">Profun. para Plantio</label>
+                    <input asp-for="ProfundidadePlantio" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="PhSolo" class="control-label">Ph do solo</label>
+                    <input asp-for="PhSolo" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="UmidadeSolo" class="control-label">Umidade do solo</label>
+                    <input asp-for="UmidadeSolo" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group d-flex justify-content-between mt-3">
+                <div class="col-md-3">
+                    <label asp-for="TempoGerminacao" class="control-label">Tempo para germinação</label>
+                    <input asp-for="TempoGerminacao" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="TempoColheita" class="control-label">Tempo para colheita</label>
+                    <input asp-for="TempoColheita" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="TempoSecagem" class="control-label">Tempo para secagem</label>
+                    <input asp-for="TempoSecagem" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Observacoes" class="control-label">Observações</label>
+                <textarea asp-for="Observacoes" class="form-control"></textarea>
+            </div>
+
+            <hr style="opacity: 0" />
+
+            <div class="form-group d-flex justify-content-end">
+                <div class="btn-group">
+                    <input type="submit" value="Cadastrar" class="btn btn-success rounded" style="margin-right: 10px;" />
+                    <a asp-action="Index" class="btn btn-danger rounded">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

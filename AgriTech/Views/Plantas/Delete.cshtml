@@ -1,0 +1,33 @@
+﻿@model AgriTech.Models.Planta
+
+@{
+    ViewData["Title"] = "Excluir";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Planta</h4>
+<p>Você tem certeza que deseja excluir?</p>
+<hr />
+
+<div class="w-75 mx-auto">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(mode => Model.NomePopular)
+        </dt>
+        <dd>
+            @Html.DisplayFor(mode => Model.NomePopular)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(mode => Model.NomeCientifico)
+        </dt>
+        <dd>
+            @Html.DisplayFor(mode => Model.NomeCientifico)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a asp-action="Index">Cancelar</a>
+    </form>
+</div>
