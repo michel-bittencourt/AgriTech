@@ -11,6 +11,7 @@ builder.Services.AddDbContext<AgriTechContext>(options =>
 builder.Services.AddScoped<SeedingService>();
 builder.Services.AddScoped<AduboService>();
 builder.Services.AddScoped<PlantaService>();
+builder.Services.AddScoped<PlantacaoService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

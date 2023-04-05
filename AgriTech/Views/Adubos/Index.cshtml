@@ -8,7 +8,7 @@
     <h1>@ViewData["Title"]</h1>
 
     <p>
-        <a asp-action="Create" class="btn btn-secondary float-end">Cadastrar</a>
+        <a asp-action="Create" class="btn btn-success float-end">Cadastrar</a>
     </p>
 
     <table class="table table-striped">
@@ -34,7 +34,7 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td class="text-center">
-                        <a asp-action="Edit" asp-route-id="#" title="Editar" style="margin-right:10px;"><i class="bi bi-pencil-square text-black"></i></a>
+                        <a asp-action="Edit" asp-route-id="#" title="Editar" style="margin-right:10px;"><i class="bi bi-pencil text-black"></i></a>
                         <a asp-action="Details" asp-route-id="#" title="Detalhes" style="margin-right:10px;"><i class="bi bi-eye text-black"></i></a>
                         <a asp-action="Delete" asp-route-id="@item.Id" title="Excluir"><i class="bi bi-trash text-black"></i></a>
                     </td>

@@ -12,5 +12,6 @@ namespace AgriTech.Data
 
         public DbSet<Adubo> Adubo { get; set; }
         public DbSet<Planta> Planta { get; set; }
+        public DbSet<Plantacao> Plantacao { get; set; }
     }
 }

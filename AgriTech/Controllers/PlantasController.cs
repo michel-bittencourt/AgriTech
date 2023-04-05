@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AgriTech.Models;
 using AgriTech.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace AgriTech.Controllers
 {
@@ -18,6 +19,11 @@ namespace AgriTech.Controllers
             var list = _PlantaService.FindAll();
             return View(list);
         }
+        public async Task<IActionResult> Details(int id)
+        {
+            var list = _PlantaService.FindById(id);
+            return View(list);
+        }
         public async Task<IActionResult> Create()
         {
             return View();
@@ -30,6 +36,7 @@ namespace AgriTech.Controllers
             _PlantaService.Insert(planta);
             return RedirectToAction(nameof(Index));
         }
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

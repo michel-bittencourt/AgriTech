@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR1Ym9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Michel_Bittencourt/Desktop/Aulas/PROJETOS/AgriTech/AgriTech/Views/Adubos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR1Ym9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Michel_Bittencourt/Desktop/Aulas/PROJETOS/AgriTech/AgriTech/Views/Adubos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR1Ym9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Michel_Bittencourt/Desktop/Aulas/PROJETOS/AgriTech/AgriTech/Views/Plantas/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRhc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Michel_Bittencourt/Desktop/Aulas/PROJETOS/AgriTech/AgriTech/Views/Plantas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRhc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Michel_Bittencourt/Desktop/Aulas/PROJETOS/AgriTech/AgriTech/Views/Plantas/Index.cshtml]

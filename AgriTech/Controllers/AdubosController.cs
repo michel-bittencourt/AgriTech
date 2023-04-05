@@ -20,6 +20,11 @@ namespace AgriTech.Controllers
             var list = _aduboService.FindAll();
             return View(list);
         }
+        public async Task<IActionResult> Details(int id)
+        {
+            var list = _aduboService.FindById(id);
+            return View(list);
+        }
         public async Task<IActionResult> Create()
         {
             return View();

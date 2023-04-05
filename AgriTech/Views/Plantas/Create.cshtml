@@ -10,17 +10,21 @@
     <div class="col-md-12 mx-auto">
         <form asp-action="Create" class="form-inline">
             <div class="form-group d-flex justify-content-between">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label asp-for="NomeCientifico" class="control-label">Nome Científico</label>
                     <input asp-for="NomeCientifico" class="form-control" />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label asp-for="NomePopular" class="control-label">Nome Popular</label>
                     <input asp-for="NomePopular" class="form-control" />
                 </div>
                 <div class="col-md-3">
-                    <label asp-for="EstacaoCrescimento" class="control-label">Melhor Estação</label>
-                    <input asp-for="EstacaoCrescimento" class="form-control" />
+                    <label asp-for="EstacaoParaPlantar" class="control-label">Estação para Plantar</label>
+                    <input asp-for="EstacaoParaPlantar" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="EstacaoParaColher" class="control-label">Estação para Colher</label>
+                    <input asp-for="EstacaoParaColher" class="form-control" />
                 </div>
             </div>
 
@@ -38,31 +42,49 @@
                     <input asp-for="ProfundidadePlantio" class="form-control" />
                 </div>
                 <div class="col-md-2">
-                    <label asp-for="PhSolo" class="control-label">Ph do solo</label>
+                    <label asp-for="PhSolo" class="control-label">Ph do Solo</label>
                     <input asp-for="PhSolo" class="form-control" />
                 </div>
                 <div class="col-md-2">
-                    <label asp-for="UmidadeSolo" class="control-label">Umidade do solo</label>
-                    <input asp-for="UmidadeSolo" class="form-control" />
+                    <label asp-for="AduboRecomendado" class="control-label">Adubo Ideal</label>
+                    <input asp-for="AduboRecomendado" class="form-control" />
                 </div>
             </div>
-
             <div class="form-group d-flex justify-content-between mt-3">
                 <div class="col-md-3">
-                    <label asp-for="TempoGerminacao" class="control-label">Tempo para germinação</label>
+                    <label asp-for="UmidadeSolo" class="control-label">Umidade do Solo</label>
+                    <input asp-for="UmidadeSolo" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="TempoGerminacao" class="control-label">Tempo para Germinação</label>
                     <input asp-for="TempoGerminacao" class="form-control" />
                 </div>
                 <div class="col-md-3">
-                    <label asp-for="TempoColheita" class="control-label">Tempo para colheita</label>
+                    <label asp-for="TempoColheita" class="control-label">Tempo para Colheita</label>
                     <input asp-for="TempoColheita" class="form-control" />
                 </div>
-                <div class="col-md-3">
-                    <label asp-for="TempoSecagem" class="control-label">Tempo para secagem</label>
+                <div class="col-md-2">
+                    <label asp-for="TempoSecagem" class="control-label">Tempo para Secagem</label>
                     <input asp-for="TempoSecagem" class="form-control" />
                 </div>
             </div>
-
-            <div class="form-group">
+            <div class="form-group mt-3">
+                <label asp-for="ComoRegar" class="control-label">Como Regar</label>
+                <textarea asp-for="ComoRegar" class="form-control"></textarea>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ComoGerminar" class="control-label">Como Germinar</label>
+                <textarea asp-for="ComoGerminar" class="form-control"></textarea>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ComoColher" class="control-label">Como Colher</label>
+                <textarea asp-for="ComoColher" class="form-control"></textarea>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ComoSecar" class="control-label">Como Secar</label>
+                <textarea asp-for="ComoSecar" class="form-control"></textarea>
+            </div>
+            <div class="form-group mt-3">
                 <label asp-for="Observacoes" class="control-label">Observações</label>
                 <textarea asp-for="Observacoes" class="form-control"></textarea>
             </div>
