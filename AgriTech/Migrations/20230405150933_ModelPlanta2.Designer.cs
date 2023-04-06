@@ -4,6 +4,7 @@ using AgriTech.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgriTech.Migrations
 {
     [DbContext(typeof(AgriTechContext))]
-    partial class AgriTechContextModelSnapshot : ModelSnapshot
+    [Migration("20230405150933_ModelPlanta2")]
+    partial class ModelPlanta2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,6 +163,9 @@ namespace AgriTech.Migrations
 
                     b.Property<DateTime>("DataPlantio")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DiasParaColher")
+                        .HasColumnType("int");
 
                     b.Property<string>("Lote")
                         .IsRequired()

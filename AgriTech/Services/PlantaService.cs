@@ -1,6 +1,5 @@
 ﻿using AgriTech.Data;
 using AgriTech.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AgriTech.Services;
 

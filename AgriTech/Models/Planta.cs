@@ -16,14 +16,16 @@ public class Planta
     public string ComoRegar { get; set; }
     public string TempoGerminacao { get; set; }
     public string ComoGerminar { get; set; }
-    public string TempoColheita { get; set; }
+    public int TempoColheita { get; set; }
     public string ComoColher { get; set; }
     public string TempoSecagem { get; set; }
     public string ComoSecar { get; set; }
     public string Observacoes { get; set; }
+    public ICollection<Plantacao> Plantacaos { get; set; }
+    public ICollection<Adubo> Adubos { get; set; }
 
     public Planta() { }
-    public Planta(string nomeCientifico, string nomePopular, string estacaoParaPlantar, string estacaoParaColher, string comprimentoPlantio, string larguraPlantio, string profundidadePlantio, string phSolo, string aduboRecomendado, string umidadeSolo, string comoRegar, string tempoGerminacao, string comoGerminar, string tempoColheita, string comoColher, string tempoSecagem, string comoSecar, string observacoes)
+    public Planta(string nomeCientifico, string nomePopular, string estacaoParaPlantar, string estacaoParaColher, string comprimentoPlantio, string larguraPlantio, string profundidadePlantio, string phSolo, string aduboRecomendado, string umidadeSolo, string comoRegar, string tempoGerminacao, string comoGerminar, int tempoColheita, string comoColher, string tempoSecagem, string comoSecar, string observacoes)
     {
         NomeCientifico = nomeCientifico;
         NomePopular = nomePopular;

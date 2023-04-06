@@ -12,4 +12,14 @@ public class PlantacaoService
         _context = context;
     }
 
+    public List<Plantacao> FindAll()
+    {
+        return _context.Plantacao.ToList();
+    }
+
+    public void Insert(Plantacao plantacao)
+    {
+        _context.Add(plantacao);
+        _context.SaveChanges();
+    }
 }

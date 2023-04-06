@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using AgriTech.Data;
 using AgriTech.Services;
 
@@ -17,7 +16,7 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+/*if (app.Environment.IsDevelopment())
 {
     using (var scope = app.Services.CreateScope())
     {
@@ -27,7 +26,7 @@ if (app.Environment.IsDevelopment())
 
         seedingService.Seed();
     }
-}
+}*/
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

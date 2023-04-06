@@ -20,10 +20,10 @@ public class SeedingService
         Adubo a1 = new Adubo("Orgânico", "Humos", "Terra Preta, Minhoca", "Descrição", "Jogando", "Observações");
         _context.Adubo.Add(a1);
 
-        Planta p1 = new Planta("Allium sativum", "Alho Branco", "Outono/Inverno", "Primavera/Verão", "10 a 15 cm", "15 a 20 cm", "2 a 3 cm", "6,0 a 7,0", "Úmido", "3 em 3 dias", "7 a 10 dias", "teste", "6 a 9 meses", "Colher quando as folhas começarem a secar e ficarem amareladas. Arrancar a planta inteira, retirar o excesso de terra.", "2 a 3 semanas", "Amarre os alhos em ramos e pendure em um local seco e ventilado.", "O alho branco é uma cultura de ciclo longo e sensível ao excesso de umidade. É importante plantar em solo bem drenado e com boa fertilidade.", "Orgânico");
+        Planta p1 = new Planta("Allium sativum", "Salsa", "Primavera", "Verão", "15 cm", "15 cm", "1 cm", "6 a 7", "Organico/NPK", "Úmido, não encharcado", "Regar regularmente, evitando encharcar o solo", "14-21 dias", "Plantar as sementes em solo úmido e cobri-las com uma fina camada de terra.", 80, "Cortar as folhas externas da planta, deixando as internas para continuar crescendo. Evitar cortar mais de um terço das folhas da planta de uma vez.", "5-10 dias", "Pendurar os ramos de salsa em local ventilado e com pouca luz até que estejam completamente secos. Armazenar em recipiente hermético.", "A salsa é uma erva bastante resistente e fácil de cultivar. Prefere sol pleno ou meia sombra e solos ricos em matéria orgânica. Pode ser cultivada em vasos ou canteiros e é uma ótima opção para temperar alimentos.");
         _context.Planta.Add(p1);
 
-        Plantacao pl1 = new Plantacao("1", 2, 2, new DateTime(2023, 01, 01), 120);
+        Plantacao pl1 = new Plantacao("nometeste", "1", 1, 1, new DateTime(2023, 01, 01));
         _context.Plantacao.Add(pl1);
 
         _context.SaveChanges();

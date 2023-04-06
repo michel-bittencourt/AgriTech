@@ -4,6 +4,7 @@ using AgriTech.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgriTech.Migrations
 {
     [DbContext(typeof(AgriTechContext))]
-    partial class AgriTechContextModelSnapshot : ModelSnapshot
+    [Migration("20230405131851_TesteViewPlantacao2")]
+    partial class TesteViewPlantacao2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,16 +49,11 @@ namespace AgriTech.Migrations
                     b.Property<string>("Observacao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlantaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PlantaId");
 
                     b.ToTable("Adubo");
                 });
@@ -124,8 +122,9 @@ namespace AgriTech.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TempoColheita")
-                        .HasColumnType("int");
+                    b.Property<string>("TempoColheita")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TempoGerminacao")
                         .IsRequired()
@@ -161,6 +160,9 @@ namespace AgriTech.Migrations
                     b.Property<DateTime>("DataPlantio")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DiasParaColher")
+                        .HasColumnType("int");
+
                     b.Property<string>("Lote")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -181,13 +183,6 @@ namespace AgriTech.Migrations
                     b.ToTable("Plantacao");
                 });
 
-            modelBuilder.Entity("AgriTech.Models.Adubo", b =>
-                {
-                    b.HasOne("AgriTech.Models.Planta", null)
-                        .WithMany("Adubos")
-                        .HasForeignKey("PlantaId");
-                });
-
             modelBuilder.Entity("AgriTech.Models.Plantacao", b =>
                 {
                     b.HasOne("AgriTech.Models.Adubo", "Adubo")
@@ -197,7 +192,7 @@ namespace AgriTech.Migrations
                         .IsRequired();
 
                     b.HasOne("AgriTech.Models.Planta", "Planta")
-                        .WithMany("Plantacaos")
+                        .WithMany()
                         .HasForeignKey("PlantaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -205,13 +200,6 @@ namespace AgriTech.Migrations
                     b.Navigation("Adubo");
 
                     b.Navigation("Planta");
-                });
-
-            modelBuilder.Entity("AgriTech.Models.Planta", b =>
-                {
-                    b.Navigation("Adubos");
-
-                    b.Navigation("Plantacaos");
                 });
 #pragma warning restore 612, 618
         }
