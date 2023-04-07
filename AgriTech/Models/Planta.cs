@@ -11,21 +11,18 @@ public class Planta
     public string LarguraPlantio { get; set; }
     public string ProfundidadePlantio { get; set; }
     public string PhSolo { get; set; }
-    public string AduboRecomendado { get; set; }
     public string UmidadeSolo { get; set; }
     public string ComoRegar { get; set; }
-    public string TempoGerminacao { get; set; }
+    public int DiasGerminacao { get; set; }
     public string ComoGerminar { get; set; }
-    public int TempoColheita { get; set; }
+    public int DiasColheita { get; set; }
     public string ComoColher { get; set; }
     public string TempoSecagem { get; set; }
     public string ComoSecar { get; set; }
     public string Observacoes { get; set; }
-    public ICollection<Plantacao> Plantacaos { get; set; }
-    public ICollection<Adubo> Adubos { get; set; }
 
     public Planta() { }
-    public Planta(string nomeCientifico, string nomePopular, string estacaoParaPlantar, string estacaoParaColher, string comprimentoPlantio, string larguraPlantio, string profundidadePlantio, string phSolo, string aduboRecomendado, string umidadeSolo, string comoRegar, string tempoGerminacao, string comoGerminar, int tempoColheita, string comoColher, string tempoSecagem, string comoSecar, string observacoes)
+    public Planta(string nomeCientifico, string nomePopular, string estacaoParaPlantar, string estacaoParaColher, string comprimentoPlantio, string larguraPlantio, string profundidadePlantio, string phSolo, string umidadeSolo, string comoRegar, int diasGerminacao, string comoGerminar, int diasColheita, string comoColher, string tempoSecagem, string comoSecar, string observacoes)
     {
         NomeCientifico = nomeCientifico;
         NomePopular = nomePopular;
@@ -35,12 +32,11 @@ public class Planta
         LarguraPlantio = larguraPlantio;
         ProfundidadePlantio = profundidadePlantio;
         PhSolo = phSolo;
-        AduboRecomendado = aduboRecomendado;
         UmidadeSolo = umidadeSolo;
         ComoRegar = comoRegar;
-        TempoGerminacao = tempoGerminacao;
+        DiasGerminacao = diasGerminacao;
         ComoGerminar = comoGerminar;
-        TempoColheita = tempoColheita;
+        DiasColheita = diasColheita;
         ComoColher = comoColher;
         TempoSecagem = tempoSecagem;
         ComoSecar = comoSecar;

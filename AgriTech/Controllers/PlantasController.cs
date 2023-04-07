@@ -7,21 +7,21 @@ namespace AgriTech.Controllers
 {
     public class PlantasController : Controller
     {
-        private readonly PlantaService _PlantaService;
+        private readonly PlantaService _plantaService;
 
         public PlantasController(PlantaService plantaService)
         {
-            _PlantaService = plantaService;
+            _plantaService = plantaService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var list = _PlantaService.FindAll();
+            var list = _plantaService.FindAll();
             return View(list);
         }
         public async Task<IActionResult> Details(int id)
         {
-            var list = _PlantaService.FindById(id);
+            var list = _plantaService.FindById(id);
             return View(list);
         }
         public async Task<IActionResult> Create()
@@ -33,7 +33,8 @@ namespace AgriTech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Planta planta)
         {
-            _PlantaService.Insert(planta);
+
+            _plantaService.Insert(planta);
             return RedirectToAction(nameof(Index));
         }
 
@@ -44,7 +45,7 @@ namespace AgriTech.Controllers
                 return NotFound();
             }
 
-            var obj = _PlantaService.FindById(id.Value);
+            var obj = _plantaService.FindById(id.Value);
 
             if (obj == null)
             {
@@ -58,7 +59,7 @@ namespace AgriTech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            _PlantaService.Remove(id);
+            _plantaService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
     }

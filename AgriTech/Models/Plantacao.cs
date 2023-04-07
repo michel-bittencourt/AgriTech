@@ -9,16 +9,23 @@ public class Plantacao
     public int PlantaId { get; set; }
     public Adubo Adubo { get; set; }
     public int AduboId { get; set; }
+    public DateTime DataGerminacao { get; set; }
+    public bool Germinou { get; set; } = false;
+    public DateTime? DataGerminou { get; set; }
     public DateTime DataPlantio { get; set; }
     public DateTime DataColheita { get; set; }
 
     public Plantacao() { }
-    public Plantacao (string nomePlanta, string lote, int plantaId, int aduboId, DateTime dataPlantio)
+
+    public Plantacao(string lote, Planta planta, Adubo adubo, DateTime dataGerminacao, bool germinou, DateTime? dataGerminou, DateTime dataPlantio, DateTime dataColheita)
     {
-        NomePlanta = nomePlanta;
         Lote = lote;
-        PlantaId = plantaId;
-        AduboId = aduboId;
+        Planta = planta;
+        Adubo = adubo;
+        DataGerminacao = dataGerminacao;
+        Germinou = germinou;
+        DataGerminou = dataGerminou;
         DataPlantio = dataPlantio;
+        DataColheita = dataColheita;
     }
 }

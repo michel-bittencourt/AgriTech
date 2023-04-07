@@ -7,7 +7,7 @@ builder.Services.AddDbContext<AgriTechContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AgriTechContext") ?? throw new InvalidOperationException("Connection string 'AgriTechContext' not found.")));
 
 // Add services to the container.
-builder.Services.AddScoped<SeedingService>();
+//builder.Services.AddScoped<SeedingService>();
 builder.Services.AddScoped<AduboService>();
 builder.Services.AddScoped<PlantaService>();
 builder.Services.AddScoped<PlantacaoService>();
@@ -43,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Plantacao}/{action=Index}/{id?}");
 
 app.Run();

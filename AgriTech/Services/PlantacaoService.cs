@@ -22,4 +22,15 @@ public class PlantacaoService
         _context.Add(plantacao);
         _context.SaveChanges();
     }
+
+    public Plantacao FindById(int id)
+    {
+        return _context.Plantacao.FirstOrDefault(x => x.Id == id);
+    }
+    public void Remove(int id)
+    {
+        var obj = _context.Plantacao.Find(id);
+        _context.Plantacao.Remove(obj);
+        _context.SaveChanges();
+    }
 }

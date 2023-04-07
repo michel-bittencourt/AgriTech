@@ -19,7 +19,7 @@
                     Nome
                 </th>
                 <th class="col-3">
-                    Data Plantio
+                    Data Germinação
                 </th>
                 <th class="col-3">
                     Data Colheita
@@ -35,14 +35,14 @@
                         @Html.DisplayFor(modelItem => item.NomePlanta)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DataPlantio)
+                        @Html.DisplayFor(modelItem => item.DataGerminacao)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DataColheita)
                     </td>
                     <td class="text-center">
                         <a asp-action="Edit" asp-route-id="#" title="Editar" style="margin-right:10px;"><i class="bi bi-pencil text-black"></i></a>
-                        <a asp-action="Details" asp-route-id="#" title="Detalhes" style="margin-right:10px;"><i class="bi bi-eye text-black"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.Id" title="Detalhes" style="margin-right:10px;"><i class="bi bi-eye text-black"></i></a>
                         <a asp-action="Delete" asp-route-id="@item.Id" title="Excluir"><i class="bi bi-trash text-black"></i></a>
                     </td>
                 </tr>

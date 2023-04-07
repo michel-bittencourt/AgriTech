@@ -46,16 +46,11 @@ namespace AgriTech.Migrations
                     b.Property<string>("Observacao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlantaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PlantaId");
 
                     b.ToTable("Adubo");
                 });
@@ -67,10 +62,6 @@ namespace AgriTech.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AduboRecomendado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ComoColher")
                         .IsRequired()
@@ -91,6 +82,12 @@ namespace AgriTech.Migrations
                     b.Property<string>("ComprimentoPlantio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiasColheita")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DiasGerminacao")
+                        .HasColumnType("int");
 
                     b.Property<string>("EstacaoParaColher")
                         .IsRequired()
@@ -124,13 +121,6 @@ namespace AgriTech.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TempoColheita")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TempoGerminacao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TempoSecagem")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -158,8 +148,17 @@ namespace AgriTech.Migrations
                     b.Property<DateTime>("DataColheita")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DataGerminacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataGerminou")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DataPlantio")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Germinou")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Lote")
                         .IsRequired()
@@ -181,13 +180,6 @@ namespace AgriTech.Migrations
                     b.ToTable("Plantacao");
                 });
 
-            modelBuilder.Entity("AgriTech.Models.Adubo", b =>
-                {
-                    b.HasOne("AgriTech.Models.Planta", null)
-                        .WithMany("Adubos")
-                        .HasForeignKey("PlantaId");
-                });
-
             modelBuilder.Entity("AgriTech.Models.Plantacao", b =>
                 {
                     b.HasOne("AgriTech.Models.Adubo", "Adubo")
@@ -197,7 +189,7 @@ namespace AgriTech.Migrations
                         .IsRequired();
 
                     b.HasOne("AgriTech.Models.Planta", "Planta")
-                        .WithMany("Plantacaos")
+                        .WithMany()
                         .HasForeignKey("PlantaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -205,13 +197,6 @@ namespace AgriTech.Migrations
                     b.Navigation("Adubo");
 
                     b.Navigation("Planta");
-                });
-
-            modelBuilder.Entity("AgriTech.Models.Planta", b =>
-                {
-                    b.Navigation("Adubos");
-
-                    b.Navigation("Plantacaos");
                 });
 #pragma warning restore 612, 618
         }
