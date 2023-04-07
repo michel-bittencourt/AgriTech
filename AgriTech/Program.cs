@@ -8,6 +8,7 @@ builder.Services.AddDbContext<AgriTechContext>(options =>
 
 // Add services to the container.
 //builder.Services.AddScoped<SeedingService>();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<AduboService>();
 builder.Services.AddScoped<PlantaService>();
 builder.Services.AddScoped<PlantacaoService>();

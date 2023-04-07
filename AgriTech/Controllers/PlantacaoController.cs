@@ -45,7 +45,7 @@ public class PlantacaoController : Controller
         var planta = _plantaService.FindById(plantacao.PlantaId);
 
         plantacao.NomePlanta = planta.NomePopular;
-
+        plantacao.NomeCientifico = planta.NomeCientifico;
         plantacao.DataGerminacao = plantacao.DataPlantio.AddDays(planta.DiasGerminacao);
         plantacao.DataColheita = plantacao.DataPlantio.AddDays(planta.DiasGerminacao + planta.DiasColheita);
 

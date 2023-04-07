@@ -4,6 +4,7 @@ public class Plantacao
 {
     public int Id { get; set; }
     public string NomePlanta { get; set; }
+    public string NomeCientifico { get; set; }
     public string Lote { get; set; }
     public Planta Planta { get; set; }
     public int PlantaId { get; set; }

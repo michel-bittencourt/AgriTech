@@ -164,6 +164,10 @@ namespace AgriTech.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NomeCientifico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NomePlanta")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
