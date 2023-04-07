@@ -2,6 +2,7 @@
 using AgriTech.Models;
 using AgriTech.Services;
 using Microsoft.EntityFrameworkCore;
+using AgriTech.Services.Exceptions;
 
 namespace AgriTech.Controllers
 {
@@ -36,6 +37,46 @@ namespace AgriTech.Controllers
 
             _plantaService.Insert(planta);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var obj = _plantaService.FindById(id.Value);
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Planta planta)
+        {
+            if(id != planta.Id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _plantaService.Update(planta);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException e)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException e)
+            {
+                return BadRequest();
+            }
         }
 
         public async Task<IActionResult> Delete(int? id)

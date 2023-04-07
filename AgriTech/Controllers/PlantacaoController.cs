@@ -1,6 +1,7 @@
 ﻿using AgriTech.Models;
 using AgriTech.Models.ViewModel;
 using AgriTech.Services;
+using AgriTech.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -34,7 +35,7 @@ public class PlantacaoController : Controller
     {
         var adubos = _aduboService.FindAll();
         var plantas = _plantaService.FindAll();
-        var viewModel = new PlantacaoFormViewModel { Adubos = adubos , Plantas = plantas};
+        var viewModel = new PlantacaoFormViewModel { Adubos = adubos, Plantas = plantas };
         return View(viewModel);
     }
 
@@ -55,6 +56,54 @@ public class PlantacaoController : Controller
         _plantacaoService.Insert(plantacao);
 
         return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var obj = _plantacaoService.FindById(id.Value);
+
+        if (obj == null)
+        {
+            return NotFound();
+        }
+
+        List<Planta> plantas = _plantaService.FindAll();
+        List<Adubo> adubos = _aduboService.FindAll();
+
+        PlantacaoFormViewModel viewModel = new PlantacaoFormViewModel { Plantacao = obj, Plantas = plantas, Adubos = adubos };
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Plantacao plantacao)
+    {
+        if (id != plantacao.Id)
+        {
+            return BadRequest();
+        }
+        var planta = _plantaService.FindById(id);
+        var adubo = _aduboService.FindById(id);
+
+        try
+        {     
+            _plantacaoService.Update(plantacao);
+            return RedirectToAction(nameof(Index));
+        }
+        catch (NotFoundException e)
+        {
+            throw new NotFoundException(e.Message);
+        }
+        catch (DbConcurrencyException e)
+        {
+            throw new DbConcurrencyException(e.Message);
+        }
     }
 
     public async Task<IActionResult> Delete(int? id)

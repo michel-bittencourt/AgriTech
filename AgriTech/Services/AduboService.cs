@@ -38,7 +38,7 @@ public class AduboService
     {
         if (!_context.Adubo.Any(x => x.Id == adubo.Id))
         {
-            throw new DirectoryNotFoundException("Adudo não encontrado");
+            throw new NotFoundException("Adudo não encontrado");
         }
 
         //O try abaixo evita excessão de conflito de concorrencia (DbUpdateConcurrencyException)

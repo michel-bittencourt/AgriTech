@@ -39,17 +39,9 @@
                 <label class="control-label">@Html.DisplayNameFor(model => model.Germinou)</label>
                 <input class="form-control border-1" value="@(Model.Germinou ? "Sim" : "Não")" readonly />
             </div>
-            <div class="col-md-3">
-                <label class="control-label">@Html.DisplayNameFor(model => model.Adubo.Tipo) Adubo</label>
-                <input class="form-control border-1" value="@(Model.Germinou ? "Sim" : "Não")" readonly />
-            </div>
         </div>
 
         <div class="form-group d-flex justify-content-between mt-3">
-            <div class="col-md-2">
-                <label class="control-label">@Html.DisplayNameFor(model => model.Adubo.Nome) Adubo</label>
-                <input asp-for="DataGerminou" class="form-control border-1" readonly />
-            </div>
             <div class="col-md-3">
                 <label class="control-label">Data que Germinou</label>
                 <input asp-for="DataGerminou" class="form-control border-1" readonly />

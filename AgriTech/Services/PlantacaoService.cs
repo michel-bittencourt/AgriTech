@@ -1,5 +1,7 @@
 ﻿using AgriTech.Data;
 using AgriTech.Models;
+using AgriTech.Services.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace AgriTech.Services;
 
@@ -17,16 +19,36 @@ public class PlantacaoService
         return _context.Plantacao.ToList();
     }
 
+    public Plantacao FindById(int id)
+    {
+        return _context.Plantacao.FirstOrDefault(x => x.Id == id);
+    }
+
     public void Insert(Plantacao plantacao)
     {
         _context.Add(plantacao);
         _context.SaveChanges();
     }
 
-    public Plantacao FindById(int id)
+    public void Update(Plantacao plantacao)
     {
-        return _context.Plantacao.FirstOrDefault(x => x.Id == id);
+        if (!_context.Plantacao.Any(x => x.Id == plantacao.Id))
+        {
+            throw new NotFoundException("Plantação não encontrada");
+        }
+
+        //O try abaixo evita excessão de conflito de concorrencia (DbUpdateConcurrencyException)
+        try
+        {
+            _context.Update(plantacao);
+            _context.SaveChanges();
+        }
+        catch (DbUpdateConcurrencyException e)
+        {
+            throw new DbConcurrencyException(e.Message);
+        }
     }
+
     public void Remove(int id)
     {
         var obj = _context.Plantacao.Find(id);

@@ -1,0 +1,63 @@
+﻿@model AgriTech.Models.ViewModel.PlantacaoFormViewModel
+
+@{
+    ViewData["Title"] = "Alterar";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <form asp-action="Edit" class="form-inline">
+            <input type="hidden" asp-for="Plantacao.Id" />
+            <div class="form-group d-flex justify-content-between">
+                <div class="col-md-2">
+                    <label asp-for="Plantacao.Lote" class="control-label"></label>
+                    <input asp-for="Plantacao.Lote" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.PlantaId" class="control-label">@Html.DisplayNameFor(model => model.Plantacao.NomePlanta)</label>
+                    <select asp-for="Plantacao.PlantaId" asp-items="@(new SelectList(Model.Plantas, "Id", "NomePopular"))" class="form-control"></select>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.AduboId" class="control-label">@Html.DisplayNameFor(model => model.Plantacao.NomeAdubo)</label>
+                    <select asp-for="Plantacao.AduboId" asp-items="@(new SelectList(Model.Adubos, "Id", "Nome"))" class="form-control"></select>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.DataPlantio" class="control-label"></label>
+                    <input asp-for="Plantacao.DataPlantio" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group d-flex justify-content-between mt-3">
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.DataGerminacao" class="control-label"></label>
+                    <input asp-for="Plantacao.DataGerminacao" class="form-control" readonly />
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="Plantacao.Germinou" class="control-label"></label>
+                    <select asp-for="Plantacao.Germinou" class="form-control">
+                        <option value="True">Sim</option>
+                        <option value="False">Não</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.DataGerminou" class="control-label"></label>
+                    <input asp-for="Plantacao.DataGerminou" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.DataColheita" class="control-label"></label>
+                    <input asp-for="Plantacao.DataColheita" class="form-control" />
+                </div>
+            </div>
+            <hr style="opacity: 0" />
+
+            <div class="form-group d-flex justify-content-end">
+                <div class="btn-group">
+                    <input type="submit" value="Alterar" class="btn btn-success rounded" style="margin-right: 10px;" />
+                    <a asp-action="Index" class="btn btn-danger rounded">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
