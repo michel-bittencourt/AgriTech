@@ -7,29 +7,26 @@
 <h1>@ViewData["Title"]</h1>
 
 <div class="row">
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-8 mx-auto">
         <form asp-action="Create" class="form-inline">
             <div class="form-group d-flex justify-content-between">
-                <div class="col-md-5">
-                    <label asp-for="Plantacao.Lote" class="control-label">Lote</label>
+                <div class="col-md-2">
+                    <label asp-for="Plantacao.Lote" class="control-label"></label>
                     <input asp-for="Plantacao.Lote" class="form-control" />
                 </div>
-                <div class="col-md-5">
-                    <label asp-for="Plantacao.PlantaId" class="control-label">ID Planta</label>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.PlantaId" class="control-label">@Html.DisplayNameFor(model => model.Plantacao.NomePlanta)</label>
                     <select asp-for="Plantacao.PlantaId" asp-items="@(new SelectList(Model.Plantas, "Id", "NomePopular"))" class="form-control"></select>
                 </div>
-            </div>
-            <div class="form-group d-flex justify-content-between mt-3">
-                <div class="col-md-5">
-                    <label asp-for="Plantacao.AduboId" class="control-label">ID Adubo</label>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.AduboId" class="control-label">@Html.DisplayNameFor(model => model.Plantacao.NomeAdubo)</label>
                     <select asp-for="Plantacao.AduboId" asp-items="@(new SelectList(Model.Adubos, "Id", "Nome"))" class="form-control"></select>
                 </div>
-                <div class="col-md-5">
-                    <label asp-for="Plantacao.DataPlantio" class="control-label">Data de Plantio</label>
+                <div class="col-md-3">
+                    <label asp-for="Plantacao.DataPlantio" class="control-label"></label>
                     <input asp-for="Plantacao.DataPlantio" class="form-control" />
                 </div>
             </div>
-
             <hr style="opacity: 0" />
 
             <div class="form-group d-flex justify-content-end">

@@ -2,6 +2,7 @@
 using AgriTech.Models.ViewModel;
 using AgriTech.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AgriTech.Controllers;
 public class PlantacaoController : Controller
@@ -16,7 +17,6 @@ public class PlantacaoController : Controller
         _plantaService = plantaService;
         _aduboService = aduboService;
     }
-
 
     public IActionResult Index()
     {
@@ -43,9 +43,12 @@ public class PlantacaoController : Controller
     public async Task<IActionResult> Create(Plantacao plantacao)
     {
         var planta = _plantaService.FindById(plantacao.PlantaId);
+        var adubo = _aduboService.FindById(plantacao.AduboId);
 
         plantacao.NomePlanta = planta.NomePopular;
         plantacao.NomeCientifico = planta.NomeCientifico;
+        plantacao.TipoAdubo = adubo.Tipo;
+        plantacao.NomeAdubo = adubo.Nome;
         plantacao.DataGerminacao = plantacao.DataPlantio.AddDays(planta.DiasGerminacao);
         plantacao.DataColheita = plantacao.DataPlantio.AddDays(planta.DiasGerminacao + planta.DiasColheita);
 

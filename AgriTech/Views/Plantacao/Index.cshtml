@@ -5,7 +5,7 @@
     ViewData["Title"] = "Plantação";
 }
 
-<div class="w-75 mx-auto">
+<div class="w-80 mx-auto min-vh-90">
     <h1>@ViewData["Title"]</h1>
 
     <p>
@@ -16,16 +16,19 @@
         <thead>
             <tr>
                 <th class="col-2">
-                    Nome
+                    @Html.DisplayNameFor(model => model.NomePlanta)
                 </th>
-                <th class="col-2">
-                    Nome Científico
+                <th class="col-2 text-center">
+                    @Html.DisplayNameFor(model => model.NomeCientifico)
                 </th>
-                <th class="col-3">
-                    Data Germinação
+                <th class="col-2 text-center">
+                    @Html.DisplayNameFor(model => model.DataPlantio)
                 </th>
-                <th class="col-3">
-                    Data Colheita
+                <th class="col-2 text-center">
+                    @Html.DisplayNameFor(model => model.DataGerminacao)
+                </th>
+                <th class="col-2 text-center">
+                    @Html.DisplayNameFor(model => model.DataColheita)
                 </th>
                 <th class="col-2 text-center">Ações</th>
             </tr>
@@ -37,13 +40,16 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NomePlanta)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.NomeCientifico)
                     </td>
-                    <td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.DataPlantio)
+                    </td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.DataGerminacao)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.DataColheita)
                     </td>
                     <td class="text-center">

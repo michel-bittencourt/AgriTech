@@ -1,7 +1,7 @@
 ﻿@model AgriTech.Models.Adubo
 
 @{
-    ViewData["Title"] = "Cadastrar";
+    ViewData["Title"] = "Editar";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -10,7 +10,8 @@
 <hr />
 <div class="row">
     <div class="col-md-6 mx-auto">
-        <form asp-action="Create" class="form-inline">
+        <form asp-action="Edit" class="form-inline">
+            <input type="hidden" asp-for="Id" />
             <div class="form-group d-flex justify-content-between">
                 <div class="col-md-5">
                     <label asp-for="Tipo" class="control-label"></label>
@@ -23,7 +24,7 @@
             </div>
             <div class="form-group mt-3">
                 <label asp-for="Ingredientes" class="control-label">Ingredientes</label>
-                <textarea asp-for="Ingredientes" class="form-control" ></textarea>
+                <textarea asp-for="Ingredientes" class="form-control"></textarea>
             </div>
             <div class="form-group mt-3">
                 <label asp-for="DescricaoMontagem" class="control-label">Como montar</label>
@@ -42,7 +43,7 @@
 
             <div class="form-group d-flex justify-content-end">
                 <div class="btn-group">
-                    <input type="submit" value="Cadastrar" class="btn btn-success rounded" style="margin-right: 10px;" />
+                    <input type="submit" value="Alterar" class="btn btn-success rounded" style="margin-right: 10px;" />
                     <a asp-action="Index" class="btn btn-danger rounded">Cancelar</a>
                 </div>
             </div>
