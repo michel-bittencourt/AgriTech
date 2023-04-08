@@ -19,10 +19,6 @@
                     <select asp-for="Plantacao.PlantaId" asp-items="@(new SelectList(Model.Plantas, "Id", "NomePopular"))" class="form-control"></select>
                 </div>
                 <div class="col-md-3">
-                    <label asp-for="Plantacao.AduboId" class="control-label">@Html.DisplayNameFor(model => model.Plantacao.NomeAdubo)</label>
-                    <select asp-for="Plantacao.AduboId" asp-items="@(new SelectList(Model.Adubos, "Id", "Nome"))" class="form-control"></select>
-                </div>
-                <div class="col-md-3">
                     <label asp-for="Plantacao.DataPlantio" class="control-label"></label>
                     <input asp-for="Plantacao.DataPlantio" class="form-control" />
                 </div>

@@ -3,7 +3,6 @@ using AgriTech.Models.ViewModel;
 using AgriTech.Services;
 using AgriTech.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AgriTech.Controllers;
 public class PlantacaoController : Controller
@@ -35,6 +34,7 @@ public class PlantacaoController : Controller
     {
         var adubos = _aduboService.FindAll();
         var plantas = _plantaService.FindAll();
+
         var viewModel = new PlantacaoFormViewModel { Adubos = adubos, Plantas = plantas };
         return View(viewModel);
     }
@@ -43,15 +43,8 @@ public class PlantacaoController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Plantacao plantacao)
     {
-        var planta = _plantaService.FindById(plantacao.PlantaId);
-        var adubo = _aduboService.FindById(plantacao.AduboId);
-
-        plantacao.NomePlanta = planta.NomePopular;
-        plantacao.NomeCientifico = planta.NomeCientifico;
-        plantacao.TipoAdubo = adubo.Tipo;
-        plantacao.NomeAdubo = adubo.Nome;
-        plantacao.DataGerminacao = plantacao.DataPlantio.AddDays(planta.DiasGerminacao);
-        plantacao.DataColheita = plantacao.DataPlantio.AddDays(planta.DiasGerminacao + planta.DiasColheita);
+        var plantas = _plantaService.FindById(plantacao.PlantaId);
+        var adubos = _aduboService.FindById(plantacao.AduboId);
 
         _plantacaoService.Insert(plantacao);
 

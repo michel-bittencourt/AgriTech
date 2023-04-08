@@ -14,13 +14,14 @@ public class AduboService
         _context = context;
     }
 
-    //Retorna todos os items da base de dados Adubo
+    //Retorna todos os items do banco
     public List<Adubo> FindAll()
     {
-        return _context.Adubo.ToList();
+        //ThenBy é a segunda ordenacao
+        return _context.Adubo.OrderBy(x => x.Tipo).ThenBy(x => x.Nome).ToList();
     }
 
-    //Retorna item especifico da base de dados Adubo
+    //Retorna item especifico do banco
     public Adubo FindById(int id)
     {
         return _context.Adubo.FirstOrDefault(x => x.Id == id);

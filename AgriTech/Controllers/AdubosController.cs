@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using AgriTech.Data;
 using AgriTech.Models;
 using AgriTech.Services;
-using AgriTech.Models.ViewModel;
 using AgriTech.Services.Exceptions;
 
 namespace AgriTech.Controllers
@@ -16,36 +13,38 @@ namespace AgriTech.Controllers
         {
             _aduboService = aduboService;
         }
-
-        //Retorna todos os item do db Adubo
+        //--------------------------------------------------------------------
+        //Retorna a pagina com todos os item do banco
         public async Task<IActionResult> Index()
         {
             var list = _aduboService.FindAll();
             return View(list);
         }
-
-        //Retorna pagina com os detalhes do Adubo especifico
+        //--------------------------------------------------------------------
+        //Retorna a pagina com os detalhes de um item especifico
         public async Task<IActionResult> Details(int id)
         {
             var list = _aduboService.FindById(id);
             return View(list);
         }
-
-        //Retorna a pagina para criar um novo Adubo no db
+        //--------------------------------------------------------------------
+        //Retorna a pagina para criar um novo item
         public async Task<IActionResult> Create()
         {
             return View();
         }
-
-        //Realiza a criar de um novo Adubo no db
+        //--------------------------------------------------------------------
+        //Realiza a criacao de um novo Adubo no banco
+        //HttpPost cria um metodo POST para envio
+        /*ValidateAntiForgeryToken é uma medida de segurança para prevenir ataques CSRF, que garante que um formulário enviado para o servidor seja o mesmo que foi exibido para o usuário, através do uso de um token de validação exclusivo.*/
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Create(Adubo adubo)
         {
             _aduboService.Insert(adubo);
             return RedirectToAction(nameof(Index));
         }
-
+        //--------------------------------------------------------------------
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -62,8 +61,10 @@ namespace AgriTech.Controllers
 
             return View(obj);
         }
-
-        [HttpPost]
+        //--------------------------------------------------------------------
+        //HttpPost cria um metodo POST para envio
+        /*ValidateAntiForgeryToken é uma medida de segurança para prevenir ataques CSRF, que garante que um formulário enviado para o servidor seja o mesmo que foi exibido para o usuário, através do uso de um token de validação exclusivo.*/
+        [HttpPost] //Cria um metodo POST par envio
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Adubo adubo)
         {
@@ -77,16 +78,16 @@ namespace AgriTech.Controllers
                 _aduboService.Update(adubo);
                 return RedirectToAction(nameof(Index));
             }
-            catch(NotFoundException e)
+            catch (NotFoundException e)
             {
                 return NotFound();
             }
-            catch(DbConcurrencyException e)
+            catch (DbConcurrencyException e)
             {
                 return BadRequest();
             }
         }
-
+        //--------------------------------------------------------------------
         //Retorna a pagina de exclusao um novo Adubo no db
         public async Task<IActionResult> Delete(int? id)
         {
@@ -104,7 +105,7 @@ namespace AgriTech.Controllers
 
             return View(obj);
         }
-
+        //--------------------------------------------------------------------
         //Realiza a exclusao de um Adubo especifico do db
         [HttpPost]
         [ValidateAntiForgeryToken]
