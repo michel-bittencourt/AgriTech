@@ -6,12 +6,6 @@ public class Plantacao
 {
     public int Id { get; set; }
     //-------------------------------------------------
-    [Display(Name = "Planta")]
-    public string NomePlanta { get; set; }
-    //-------------------------------------------------
-    [Display(Name = "Nome Científico")]
-    public string NomeCientifico { get; set; }
-    //-------------------------------------------------
     public string Lote { get; set; } 
     //-------------------------------------------------
     [Display(Name = "Germinação")]
@@ -41,11 +35,9 @@ public class Plantacao
     //Construct
     public Plantacao() { }
 
-    public Plantacao(int id, string nomePlanta, string nomeCientifico, string lote, DateTime? dataGerminacao, bool germinou, DateTime? dataGerminou, DateTime dataPlantio, DateTime dataColheita, Planta planta)
+    public Plantacao(int id, string lote, DateTime? dataGerminacao, bool germinou, DateTime? dataGerminou, DateTime dataPlantio, DateTime dataColheita, Planta planta)
     {
         Id = id;
-        NomePlanta = nomePlanta;
-        NomeCientifico = nomeCientifico;
         Lote = lote;
         DataGerminacao = dataGerminacao;
         Germinou = germinou;

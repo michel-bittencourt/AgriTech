@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace AgriTech.Models;
 
@@ -7,54 +8,75 @@ public class Planta
     public int Id { get; set; }
     //-------------------------------------------------
     [DisplayName("Nome Científico")]
+    [Required(ErrorMessage = "Campo obrigatório")]
+    [StringLength(25, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string NomeCientifico { get; set; }
     //-------------------------------------------------
-    [DisplayName("Nome Popular")]
+    [DisplayName("Nome da Planta")]
+    [Required(ErrorMessage = "Campo obrigatório")]
+    [StringLength(25, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string NomePopular { get; set; }
     //-------------------------------------------------
     [DisplayName("Estação para Plantio")]
+    [StringLength(35, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? EstacaoParaPlantar { get; set; }
     //-------------------------------------------------
     [DisplayName("Estação para Colheita")]
+    [StringLength(35, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? EstacaoParaColher { get; set; }
     //-------------------------------------------------
     [DisplayName("Compri. Plantio")]
+    [StringLength(10, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? ComprimentoPlantio { get; set; }
     //-------------------------------------------------
     [DisplayName("Larg. Plantio")]
+    [StringLength(10, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? LarguraPlantio { get; set; }
     //-------------------------------------------------
     [DisplayName("Profun. para Plantio")]
+    [StringLength(10, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? ProfundidadePlantio { get; set; }
     //-------------------------------------------------
     [DisplayName("Ph do Solo")]
+    [StringLength(15, MinimumLength = 1, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? PhSolo { get; set; }
     //-------------------------------------------------
     [DisplayName("Umid. do Solo")]
+    [StringLength(40, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? UmidadeSolo { get; set; }
     //-------------------------------------------------
     [DisplayName("Como Regar")]
+    [StringLength(300, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? ComoRegar { get; set; }
     //-------------------------------------------------
     [DisplayName("Dias para Germinar")]
+    [Required(ErrorMessage = "Campo obrigatório")]
+    [StringLength(5, MinimumLength = 1, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public int DiasGerminacao { get; set; }
     //-------------------------------------------------
     [DisplayName("Como Germinar")]
+    [StringLength(300, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? ComoGerminar { get; set; }
     //-------------------------------------------------
     [DisplayName("Dias para Colheita")]
+    [Required(ErrorMessage = "Campo obrigatório")]
+    [StringLength(5, MinimumLength = 1, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public int DiasColheita { get; set; }
     //-------------------------------------------------
     [DisplayName("Como Colher")]
+    [StringLength(300, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? ComoColher { get; set; }
     //-------------------------------------------------
     [DisplayName("Tempo para secagem")]
+    [StringLength(15, MinimumLength = 1, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? TempoSecagem { get; set; }
     //-------------------------------------------------
     [DisplayName("Como Secar")]
+    [StringLength(300, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? ComoSecar { get; set; }
     //-------------------------------------------------
     [DisplayName("Observações")]
+    [StringLength(500, MinimumLength = 3, ErrorMessage = "Deve conter de {2} a {1} caracteres")]
     public string? Observacoes { get; set; }
     //-------------------------------------------------
     public List<Plantacao> plantacaos { get; set; }

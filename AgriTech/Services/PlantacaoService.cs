@@ -2,6 +2,7 @@
 using AgriTech.Models;
 using AgriTech.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.Versioning;
 
 namespace AgriTech.Services;
 
@@ -19,9 +20,9 @@ public class PlantacaoService
         return _context.Plantacao.ToList();
     }
 
-    public Plantacao FindById(int id)
+    public Plantacao FindById(int id, Planta planta)
     {
-        return _context.Plantacao.FirstOrDefault(x => x.Id == id);
+        return _context.Plantacao.FirstOrDefault(x => x.Id == id && x.PlantaId == planta.Id);
     }
 
     public void Insert(Plantacao plantacao)

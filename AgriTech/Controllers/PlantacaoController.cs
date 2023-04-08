@@ -24,15 +24,15 @@ public class PlantacaoController : Controller
         return View(plantacoes);
     }
 
-    public async Task<IActionResult> Details(int id)
+    public async Task<IActionResult> Details(int id, Planta planta)
     {
-        var list = _plantacaoService.FindById(id);
+        var list = _plantacaoService.FindById(id, planta);
         return View(list);
     }
 
     public async Task<IActionResult> Create()
     {
-        var adubos = _aduboService.FindAll();
+        var adubos = await _aduboService.FindAllAsync();
         var plantas = _plantaService.FindAll();
 
         var viewModel = new PlantacaoFormViewModel { Adubos = adubos, Plantas = plantas };
@@ -44,14 +44,14 @@ public class PlantacaoController : Controller
     public async Task<IActionResult> Create(Plantacao plantacao)
     {
         var plantas = _plantaService.FindById(plantacao.PlantaId);
-        var adubos = _aduboService.FindById(plantacao.AduboId);
+        var adubos = _aduboService.FindByIdAsync(plantacao.AduboId);
 
         _plantacaoService.Insert(plantacao);
 
         return RedirectToAction(nameof(Index));
     }
 
-    public async Task<IActionResult> Edit(int? id)
+    /*public async Task<IActionResult> Edit(int? id)
     {
         if (id == null)
         {
@@ -71,7 +71,7 @@ public class PlantacaoController : Controller
         PlantacaoFormViewModel viewModel = new PlantacaoFormViewModel { Plantacao = obj, Plantas = plantas, Adubos = adubos };
 
         return View(viewModel);
-    }
+    }*/
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -82,7 +82,7 @@ public class PlantacaoController : Controller
             return BadRequest();
         }
         var planta = _plantaService.FindById(id);
-        var adubo = _aduboService.FindById(id);
+        var adubo = _aduboService.FindByIdAsync(id);
 
         try
         {     
@@ -99,7 +99,7 @@ public class PlantacaoController : Controller
         }
     }
 
-    public async Task<IActionResult> Delete(int? id)
+    /*public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
         {
@@ -114,7 +114,7 @@ public class PlantacaoController : Controller
         }
 
         return View(obj);
-    }
+    }*/
 
     [HttpPost]
     [ValidateAntiForgeryToken]

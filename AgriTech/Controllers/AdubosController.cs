@@ -17,14 +17,14 @@ namespace AgriTech.Controllers
         //Retorna a pagina com todos os item do banco
         public async Task<IActionResult> Index()
         {
-            var list = _aduboService.FindAll();
+            var list = await _aduboService.FindAllAsync();
             return View(list);
         }
         //--------------------------------------------------------------------
         //Retorna a pagina com os detalhes de um item especifico
         public async Task<IActionResult> Details(int id)
         {
-            var list = _aduboService.FindById(id);
+            var list = await _aduboService.FindByIdAsync(id);
             return View(list);
         }
         //--------------------------------------------------------------------
@@ -41,7 +41,11 @@ namespace AgriTech.Controllers
         [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Create(Adubo adubo)
         {
-            _aduboService.Insert(adubo);
+            if (!ModelState.IsValid)
+            {
+                return View(adubo);
+            }
+            await _aduboService.InsertAsync(adubo);
             return RedirectToAction(nameof(Index));
         }
         //--------------------------------------------------------------------
@@ -52,7 +56,7 @@ namespace AgriTech.Controllers
                 return NotFound();
             }
 
-            var obj = _aduboService.FindById(id.Value);
+            var obj = await _aduboService.FindByIdAsync(id.Value);
 
             if (obj == null)
             {
@@ -68,6 +72,11 @@ namespace AgriTech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Adubo adubo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(adubo);
+            }
+
             if (id != adubo.Id)
             {
                 return BadRequest();
@@ -75,7 +84,7 @@ namespace AgriTech.Controllers
 
             try
             {
-                _aduboService.Update(adubo);
+                await _aduboService.UpdateAsync(adubo);
                 return RedirectToAction(nameof(Index));
             }
             catch (NotFoundException e)
@@ -96,7 +105,7 @@ namespace AgriTech.Controllers
                 return NotFound();
             }
 
-            var obj = _aduboService.FindById(id.Value);
+            var obj = await _aduboService.FindByIdAsync(id.Value);
 
             if (obj == null)
             {
@@ -111,7 +120,7 @@ namespace AgriTech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            _aduboService.Remove(id);
+            await _aduboService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }

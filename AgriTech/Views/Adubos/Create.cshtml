@@ -11,31 +11,40 @@
 <div class="row">
     <div class="col-md-6 mx-auto">
         <form asp-action="Create" class="form-inline">
+            <!--Responsavel por exibir todos os erros de validacao definidos no model-->
+            <!--<div asp-validation-summary="All" class="text-danger"></div>-->
             <div class="form-group d-flex justify-content-between">
                 <div class="col-md-5">
                     <label asp-for="Tipo" class="control-label"></label>
                     <input asp-for="Tipo" class="form-control" />
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                    <!--Responsavel por exibir os erros individuais de validacao definidos no model-->
                 </div>
                 <div class="col-md-5">
                     <label asp-for="Nome" class="control-label"></label>
                     <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group mt-3">
                 <label asp-for="Ingredientes" class="control-label">Ingredientes</label>
                 <textarea asp-for="Ingredientes" class="form-control" ></textarea>
+                <span asp-validation-for="Ingredientes" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for="DescricaoMontagem" class="control-label">Como montar</label>
                 <textarea asp-for="DescricaoMontagem" class="form-control"></textarea>
+                <span asp-validation-for="DescricaoMontagem" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for="DescricaoUso" class="control-label">Como usar</label>
                 <textarea asp-for="DescricaoUso" class="form-control"></textarea>
+                <span asp-validation-for="DescricaoUso" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for="Observacao" class="control-label">Observação</label>
                 <textarea asp-for="Observacao" class="form-control"></textarea>
+                <span asp-validation-for="Observacao" class="text-danger"></span>
             </div>
 
             <hr style="opacity: 0" />
@@ -49,3 +58,10 @@
         </form>
     </div>
 </div>
+
+<!--Script para exibir no lado do cliente os erros de validacao definidos no model-->
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

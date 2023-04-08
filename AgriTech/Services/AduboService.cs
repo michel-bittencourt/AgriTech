@@ -15,29 +15,29 @@ public class AduboService
     }
 
     //Retorna todos os items do banco
-    public List<Adubo> FindAll()
+    public async Task<List<Adubo>> FindAllAsync()
     {
         //ThenBy é a segunda ordenacao
-        return _context.Adubo.OrderBy(x => x.Tipo).ThenBy(x => x.Nome).ToList();
+        return await _context.Adubo.OrderBy(x => x.Tipo).ThenBy(x => x.Nome).ToListAsync();
     }
 
     //Retorna item especifico do banco
-    public Adubo FindById(int id)
+    public async Task<Adubo> FindByIdAsync(int id)
     {
-        return _context.Adubo.FirstOrDefault(x => x.Id == id);
+        return await _context.Adubo.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     //Insere um novo Adubo na base de dados
-    public void Insert(Adubo obj)
+    public async Task InsertAsync(Adubo obj)
     {
         _context.Add(obj);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
     //Altera campos do item especifico da base de dados Adubo
-    public void Update(Adubo adubo)
+    public async Task UpdateAsync(Adubo adubo)
     {
-        if (!_context.Adubo.Any(x => x.Id == adubo.Id))
+        if (!await _context.Adubo.AnyAsync(x => x.Id == adubo.Id))
         {
             throw new NotFoundException("Adudo não encontrado");
         }
@@ -46,7 +46,7 @@ public class AduboService
         try
         {
             _context.Update(adubo);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException e)
         {
@@ -55,10 +55,11 @@ public class AduboService
     }
 
     //Remove item especifico da base de dados Adubo
-    public void Remove(int id)
+    public async Task RemoveAsync(int id)
     {
-        var obj = _context.Adubo.Find(id);
+        var obj = await _context.Adubo.FindAsync(id);
+
         _context.Adubo.Remove(obj);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AgriTech.Models.Plantacao>
 
-@{
 
+@{
     ViewData["Title"] = "Plantação";
 }
 
@@ -16,10 +16,10 @@
         <thead>
             <tr>
                 <th class="col-2">
-                    @Html.DisplayNameFor(model => model.NomePlanta)
+                    @Html.DisplayNameFor(model => model.Planta.NomePopular)
                 </th>
                 <th class="col-2 text-center">
-                    @Html.DisplayNameFor(model => model.NomeCientifico)
+                    @Html.DisplayNameFor(model => model.Planta.NomeCientifico)
                 </th>
                 <th class="col-2 text-center">
                     @Html.DisplayNameFor(model => model.DataPlantio)
@@ -38,10 +38,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PlantaId)
+                        @Html.DisplayFor(modelItem => item.Planta.NomePopular)
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.NomeCientifico)
+                        @Html.DisplayFor(modelItem => item.Planta.NomeCientifico)
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.DataPlantio)

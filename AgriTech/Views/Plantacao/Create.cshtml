@@ -15,7 +15,7 @@
                     <input asp-for="Plantacao.Lote" class="form-control" />
                 </div>
                 <div class="col-md-3">
-                    <label asp-for="Plantacao.PlantaId" class="control-label">@Html.DisplayNameFor(model => model.Plantacao.NomePlanta)</label>
+                    <label asp-for="Plantacao.PlantaId" class="control-label">@Html.DisplayNameFor(model => model.Plantacao.Planta.NomePopular)</label>
                     <select asp-for="Plantacao.PlantaId" asp-items="@(new SelectList(Model.Plantas, "Id", "NomePopular"))" class="form-control"></select>
                 </div>
                 <div class="col-md-3">
