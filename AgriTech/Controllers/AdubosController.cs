@@ -38,13 +38,14 @@ namespace AgriTech.Controllers
         //HttpPost cria um metodo POST para envio
         /*ValidateAntiForgeryToken é uma medida de segurança para prevenir ataques CSRF, que garante que um formulário enviado para o servidor seja o mesmo que foi exibido para o usuário, através do uso de um token de validação exclusivo.*/
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Adubo adubo)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return View(adubo);
-            }
+            }*/
+
             await _aduboService.InsertAsync(adubo);
             return RedirectToAction(nameof(Index));
         }
@@ -120,8 +121,15 @@ namespace AgriTech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _aduboService.RemoveAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await _aduboService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
         }
     }
 }

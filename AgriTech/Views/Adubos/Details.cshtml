@@ -10,7 +10,7 @@
     <h4>@Model.Tipo</h4>
     <div class="form-group">
         <div class="btn-group">
-            <a asp-action="#" class="btn btn-warning rounded">Alterar</a>
+            <a href="@Url.Action("Edit", "Adubos", new { id = @Model.Id })" class="btn btn-warning rounded">Alterar</a>
             <p style="opacity: 0">---</p>
             <a asp-action="Index" class="btn btn-danger rounded">Voltar</a>
         </div>

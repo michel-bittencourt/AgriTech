@@ -18,15 +18,15 @@ public class PlantacaoController : Controller
         _aduboService = aduboService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var plantacoes = _plantacaoService.FindAll();
+        var plantacoes = await _plantacaoService.FindAllAsync();
         return View(plantacoes);
     }
 
-    public async Task<IActionResult> Details(int id, Planta planta)
+    public async Task<IActionResult> Details(int id)
     {
-        var list = _plantacaoService.FindById(id, planta);
+        var list = await _plantacaoService.FindByIdAsync(id);
         return View(list);
     }
 
@@ -36,6 +36,7 @@ public class PlantacaoController : Controller
         var plantas = _plantaService.FindAll();
 
         var viewModel = new PlantacaoFormViewModel { Adubos = adubos, Plantas = plantas };
+
         return View(viewModel);
     }
 
@@ -44,12 +45,19 @@ public class PlantacaoController : Controller
     public async Task<IActionResult> Create(Plantacao plantacao)
     {
         var plantas = _plantaService.FindById(plantacao.PlantaId);
-        var adubos = _aduboService.FindByIdAsync(plantacao.AduboId);
 
-        _plantacaoService.Insert(plantacao);
+        plantacao.NomePlanta = plantas.NomePopular;
+        plantacao.NomeCientifico = plantas.NomeCientifico;
+
+        plantacao.CalculaTempoColheita(plantas.DiasColheita);
+        plantacao.CalculaTempoGerminacao(plantas.DiasGerminacao);
+
+        await _plantacaoService.InsertAsync(plantacao);
 
         return RedirectToAction(nameof(Index));
     }
+
+
 
     /*public async Task<IActionResult> Edit(int? id)
     {
@@ -73,7 +81,7 @@ public class PlantacaoController : Controller
         return View(viewModel);
     }*/
 
-    [HttpPost]
+    /*[HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Plantacao plantacao)
     {
@@ -97,16 +105,18 @@ public class PlantacaoController : Controller
         {
             throw new DbConcurrencyException(e.Message);
         }
-    }
+    }*/
 
-    /*public async Task<IActionResult> Delete(int? id)
+    //--------------------------------------------------------------------
+    //Retorna a pagina de exclusao
+    public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
         {
             return NotFound();
         }
 
-        var obj = _plantacaoService.FindById(id.Value);
+        var obj = await _plantacaoService.FindByIdAsync(id.Value);
 
         if (obj == null)
         {
@@ -114,13 +124,21 @@ public class PlantacaoController : Controller
         }
 
         return View(obj);
-    }*/
-
+    }
+    //--------------------------------------------------------------------
+    //Realiza a exclusao de uma plantacao especifico do banco
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
     {
-        _plantacaoService.Remove(id);
-        return RedirectToAction(nameof(Index));
+        try
+        {
+            await _plantacaoService.RemoveAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+        catch (IntegrityException e)
+        {
+            throw new IntegrityException(e.Message);
+        }
     }
 }

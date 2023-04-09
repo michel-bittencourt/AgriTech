@@ -15,23 +15,23 @@ public class PlantacaoService
         _context = context;
     }
 
-    public List<Plantacao> FindAll()
+    public async Task<List<Plantacao>> FindAllAsync()
     {
-        return _context.Plantacao.ToList();
+        return await _context.Plantacao.OrderBy(x => x.DataColheita).ThenBy(x => x.DataGerminacao).ThenBy(x => x.NomePlanta).ThenBy(x => x.NomeCientifico).ThenBy(x => x.Id).ToListAsync();
     }
 
-    public Plantacao FindById(int id, Planta planta)
+    public async Task<Plantacao> FindByIdAsync(int id)
     {
-        return _context.Plantacao.FirstOrDefault(x => x.Id == id && x.PlantaId == planta.Id);
+        return await _context.Plantacao.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public void Insert(Plantacao plantacao)
+    public async Task InsertAsync(Plantacao plantacao)
     {
         _context.Add(plantacao);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public void Update(Plantacao plantacao)
+    /*public async Task Update(Plantacao plantacao)
     {
         if (!_context.Plantacao.Any(x => x.Id == plantacao.Id))
         {
@@ -48,12 +48,21 @@ public class PlantacaoService
         {
             throw new DbConcurrencyException(e.Message);
         }
-    }
+    }*/
 
-    public void Remove(int id)
+    //Remove item especifico do banco
+    public async Task RemoveAsync(int id)
     {
-        var obj = _context.Plantacao.Find(id);
-        _context.Plantacao.Remove(obj);
-        _context.SaveChanges();
+        try
+        {
+            var obj = await _context.Plantacao.FindAsync(id);
+
+            _context.Plantacao.Remove(obj);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException e)
+        {
+            throw new IntegrityException(e.Message);
+        }
     }
 }

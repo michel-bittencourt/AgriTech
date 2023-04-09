@@ -34,10 +34,10 @@ namespace AgriTech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Planta planta)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return View(planta);
-            }
+            }*/
 
             _plantaService.Insert(planta);
             return RedirectToAction(nameof(Index));

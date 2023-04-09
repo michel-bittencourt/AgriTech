@@ -85,31 +85,29 @@ namespace AgriTech.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ComoColher")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ComoGerminar")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ComoRegar")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ComoSecar")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("ComprimentoPlantio")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("DiasColheita")
-                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.Property<int>("DiasGerminacao")
-                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.Property<string>("EstacaoParaColher")
@@ -120,9 +118,12 @@ namespace AgriTech.Migrations
                         .HasMaxLength(35)
                         .HasColumnType("nvarchar(35)");
 
+                    b.Property<string>("FontesPesquisa")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LarguraPlantio")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("NomeCientifico")
                         .IsRequired()
@@ -139,20 +140,18 @@ namespace AgriTech.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("PhSolo")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ProfundidadePlantio")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("TempoSecagem")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                    b.Property<int?>("TempoSecagem")
+                        .HasColumnType("int");
 
                     b.Property<string>("UmidadeSolo")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -167,7 +166,7 @@ namespace AgriTech.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AduboId")
+                    b.Property<int?>("AduboId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataColheita")
@@ -189,8 +188,22 @@ namespace AgriTech.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NomeAdubo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeCientifico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomePlanta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PlantaId")
                         .HasColumnType("int");
+
+                    b.Property<string>("TipoAdubo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

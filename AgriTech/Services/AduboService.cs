@@ -28,9 +28,9 @@ public class AduboService
     }
 
     //Insere um novo Adubo na base de dados
-    public async Task InsertAsync(Adubo obj)
+    public async Task InsertAsync(Adubo adubo)
     {
-        _context.Add(obj);
+        _context.Add(adubo);
         await _context.SaveChangesAsync();
     }
 
@@ -57,9 +57,16 @@ public class AduboService
     //Remove item especifico da base de dados Adubo
     public async Task RemoveAsync(int id)
     {
-        var obj = await _context.Adubo.FindAsync(id);
+        try
+        {
+            var obj = await _context.Adubo.FindAsync(id);
 
-        _context.Adubo.Remove(obj);
-        await _context.SaveChangesAsync();
+            _context.Adubo.Remove(obj);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException e)
+        {
+            throw new IntegrityException(e.Message);
+        }
     }
 }

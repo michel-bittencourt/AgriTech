@@ -10,7 +10,7 @@
     <h4>@Model.NomePopular</h4>
     <div class="form-group">
         <div class="btn-group">
-            <a asp-action="#" class="btn btn-warning rounded">Alterar</a>
+            <a href="@Url.Action("Edit", "Planta", new { id = @Model.Id })" class="btn btn-warning rounded">Alterar</a>
             <p style="opacity: 0">---</p>
             <a asp-action="Index" class="btn btn-danger rounded">Voltar</a>
         </div>
@@ -93,6 +93,10 @@
         <div class="form-group mt-3">
             <label class="control-label">Observações</label>
             <textarea asp-for="Observacoes" class="form-control border-1" readonly></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label class="control-label">Fontes de Pesquisa</label>
+            <textarea asp-for="FontesPesquisa" class="form-control border-1" readonly></textarea>
         </div>
 
         <hr style="opacity: 0" />

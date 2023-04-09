@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgriTech.Migrations
 {
     [DbContext(typeof(AgriTechContext))]
-    [Migration("20230407200552_Atualizacao11")]
-    partial class Atualizacao11
+    [Migration("20230409010018_V1.0")]
+    partial class V10
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,21 @@ namespace AgriTech.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AduboPlantacao", b =>
+                {
+                    b.Property<int>("AduboId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("plantacaosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AduboId", "plantacaosId");
+
+                    b.HasIndex("plantacaosId");
+
+                    b.ToTable("AduboPlantacao");
+                });
+
             modelBuilder.Entity("AgriTech.Models.Adubo", b =>
                 {
                     b.Property<int>("Id")
@@ -34,24 +49,30 @@ namespace AgriTech.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DescricaoMontagem")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("DescricaoUso")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Ingredientes")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Observacao")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
@@ -67,24 +88,24 @@ namespace AgriTech.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ComoColher")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ComoGerminar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ComoRegar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ComoSecar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ComprimentoPlantio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("DiasColheita")
                         .HasColumnType("int");
@@ -93,43 +114,43 @@ namespace AgriTech.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EstacaoParaColher")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("EstacaoParaPlantar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("LarguraPlantio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("NomeCientifico")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("NomePopular")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Observacoes")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("PhSolo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("ProfundidadePlantio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("TempoSecagem")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("TempoSecagem")
+                        .HasColumnType("int");
 
                     b.Property<string>("UmidadeSolo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -145,16 +166,16 @@ namespace AgriTech.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AduboId")
+                    b.Property<int?>("AduboId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataColheita")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DataGerminacao")
+                    b.Property<DateTime?>("DataGerminacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DataGerminou")
+                    b.Property<DateTime?>("DataGerminou")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DataPlantio")
@@ -171,6 +192,7 @@ namespace AgriTech.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeCientifico")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomePlanta")
@@ -181,35 +203,44 @@ namespace AgriTech.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TipoAdubo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AduboId");
 
                     b.HasIndex("PlantaId");
 
                     b.ToTable("Plantacao");
                 });
 
-            modelBuilder.Entity("AgriTech.Models.Plantacao", b =>
+            modelBuilder.Entity("AduboPlantacao", b =>
                 {
-                    b.HasOne("AgriTech.Models.Adubo", "Adubo")
+                    b.HasOne("AgriTech.Models.Adubo", null)
                         .WithMany()
                         .HasForeignKey("AduboId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AgriTech.Models.Planta", "Planta")
+                    b.HasOne("AgriTech.Models.Plantacao", null)
                         .WithMany()
+                        .HasForeignKey("plantacaosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AgriTech.Models.Plantacao", b =>
+                {
+                    b.HasOne("AgriTech.Models.Planta", "Planta")
+                        .WithMany("plantacaos")
                         .HasForeignKey("PlantaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Adubo");
-
                     b.Navigation("Planta");
+                });
+
+            modelBuilder.Entity("AgriTech.Models.Planta", b =>
+                {
+                    b.Navigation("plantacaos");
                 });
 #pragma warning restore 612, 618
         }
